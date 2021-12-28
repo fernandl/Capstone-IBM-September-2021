@@ -29,8 +29,7 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                                     {'label': 'VAFB SLC-4E', 'value': 'VAFB SLC-4E'},
                                     {'label': 'KSC LC-39A', 'value': 'KSC LC-39A'},
                                     {'label': 'CCAFS SLC-40', 'value': 'CCAFS SLC-40'}],
-                                    placeholder="Select a Launch Site here",
-                                    value='All',
+                                    placeholder="Select a Launch Site here", value='ALL',
                                     searchable=True),
 
                                 html.Br(),
@@ -68,7 +67,7 @@ Input(component_id='site-dropdown', component_property='value')
 )
 def get_pie(value):
     filtered_df = spacex_df
-    if value == 'All Sites':
+    if value == 'ALL':
         fig = px.pie(spacex_df, values='class', names='Launch Site', title='Total Success Launches By Site')
         return fig
 
@@ -90,7 +89,7 @@ Input(component_id='payload-slider', component_property='value')]
 def get_scatter(value1,value2):
     filtered_df2_1=spacex_df[(spacex_df['Payload Mass (kg)'] > value2[0]) & (spacex_df['Payload Mass (kg)'] < value2[1])]
 
-    if value1=='All Sites':
+    if value1=='ALL':
         fig= px.scatter(filtered_df2_1,x="Payload Mass (kg)",y="class",color="Booster Version Category",\
         title="Correlation between Payload and Success for All sites")
         return fig
