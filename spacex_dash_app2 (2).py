@@ -14,7 +14,7 @@ min_payload = spacex_df['Payload Mass (kg)'].min()
 # Create a dash application
 app = dash.Dash(__name__)
 
-# Create an app layout
+## Create an app layout
 
 app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                                         style={'textAlign': 'center', 'color': '#503D36',
@@ -74,7 +74,7 @@ def get_pie(value):
     else:
         filtered_df = spacex_df[spacex_df['Launch Site'] == value].groupby(['Launch Site', 'class']). \
         size().reset_index(name='class count')
-        title = f"Total Success Launches for site {value}"
+        title = f"Total Success Launches for site {value}",
         fig = px.pie(filtered_df,values='class count', names='class', title=title)
         return fig
 
